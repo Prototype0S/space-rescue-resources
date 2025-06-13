@@ -9,4 +9,4 @@ class Title(RoomObject):
         
         # set image
         image = self.load_image("Title.png")
-        self.set_image(image,800,350)
+        self.set_image(image, 800, 350)

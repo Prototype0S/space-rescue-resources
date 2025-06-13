@@ -1,11 +1,10 @@
-
 class Globals:
 
     running = True
     FRAMES_PER_SECOND = 30
 
-    SCREEN_WIDTH = 800
-    SCREEN_HEIGHT = 600
+    SCREEN_WIDTH = 1280
+    SCREEN_HEIGHT = 800
 
     SCORE = 0
 
@@ -13,7 +12,7 @@ class Globals:
     LIVES = 3
 
     # - Set the Window display name - #
-    window_name = 'GF Game'
+    window_name = 'Space Rescue'
 
     # - Set the order of the rooms - #
     levels = ["WelcomeScreen", "Maze", "ScrollingShooter", "BreakOut"]
