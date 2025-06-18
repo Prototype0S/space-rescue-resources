@@ -21,6 +21,8 @@ class Laser(RoomObject):
 
         #handle events
         self.register_collision_object("Asteroid")
+        self.register_collision_object("Astronaut")
+        self.register_collision_object("Zork")
         
     def step(self):
         """
@@ -39,4 +41,9 @@ class Laser(RoomObject):
         #Handle laser collisions with other registered objects
         if other_type == "Asteroid":
             self.room.delete_object(other)
+            self.room.delete_object(self)
+        elif other_type == "Astronaut":
+            self.room.delete_object(other)
+            self.room.delete_object(self)
+        elif other_type == "Zork":
             self.room.delete_object(self)
