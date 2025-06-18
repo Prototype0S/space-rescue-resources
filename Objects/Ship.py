@@ -1,4 +1,5 @@
 from GameFrame import RoomObject, Globals
+from Objects.Laser import Laser
 import pygame
 
 class Ship(RoomObject):
@@ -18,6 +19,7 @@ class Ship(RoomObject):
         
         # register events
         self.handle_key_events = True
+        self.can_shoot = True
         
     def key_pressed(self, key):
         """
@@ -30,6 +32,8 @@ class Ship(RoomObject):
         elif key[pygame.K_s]:
             #self.y += 10
             self.y_speed += 2
+        elif key[pygame.K_SPACE]:
+            self.shoot_laser()
 
     def keep_in_room(self):
             """
@@ -47,3 +51,14 @@ class Ship(RoomObject):
         Determine what happens to the ship on each click of the game clock
         """
         self.keep_in_room()
+    def shoot_laser(self):
+        #shoot a laser from the ship
+        new_laser = Laser(self.room, self.x + self.width, self.y + self.height/ 2-4)
+        self.room.add_room_object(new_laser)
+        self.can_shoot = False
+        self.set_timer(10,self.reset_shot)
+
+    def reset_shot(self):
+        #allows ship to shoot again
+        self.can_shoot = True
+    
