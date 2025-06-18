@@ -1,4 +1,5 @@
 from GameFrame import RoomObject, Globals
+from Objects.Hud import Score
 import random
 
 class Asteroid(RoomObject):
@@ -57,3 +58,6 @@ class Asteroid(RoomObject):
         
         if other_type == "Ship":
             self.room.running = False
+            self.room.score.reset_score(0)
+            
+            

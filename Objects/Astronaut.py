@@ -36,6 +36,7 @@ class Astronaut(RoomObject):
         # ship collision
         if other_type == "Ship":
             self.room.delete_object(self)
+            self.room.score.update_score(50)
             
     def outside_of_room(self):
         """
@@ -43,3 +44,4 @@ class Astronaut(RoomObject):
         """
         if self.x + self.width < 0:
             self.room.delete_object(self)
+            
