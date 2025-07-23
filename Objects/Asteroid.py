@@ -1,5 +1,4 @@
 from GameFrame import RoomObject, Globals
-from Objects.Hud import Score
 import random
 
 class Asteroid(RoomObject):
@@ -57,7 +56,9 @@ class Asteroid(RoomObject):
         """
         
         if other_type == "Ship":
-            self.room.running = False
-            self.room.score.reset_score(0)
-            
-            
+            self.room.delete_object(self)
+            Globals.LIVES -= 1
+            if Globals.LIVES > 0:
+                self.room.lives.update_image()
+            else:
+                self.room.running = False
