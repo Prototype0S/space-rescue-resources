@@ -1,5 +1,4 @@
 from GameFrame import RoomObject, Globals
-
 class Laser(RoomObject):
     """
     Class for the lasers shot by the Ship
@@ -51,10 +50,12 @@ class Laser(RoomObject):
     def handle_collision(self, other, other_type):
         #Handle laser collisions with other registered objects
         if other_type == "Asteroid":
+            self.room.asteroid_shot.play()
             self.room.delete_object(other)
             self.room.delete_object(self)
             self.room.score.update_score(5)
         elif other_type == "Astronaut":
+            self.room.astronaut_shot.play()
             self.room.delete_object(other)
             self.room.delete_object(self)
             self.room.score.update_score(-10)
@@ -64,6 +65,7 @@ class Laser(RoomObject):
                 fireball = self.load_image("Fireball.png")
                 self.set_image(fireball,50, 48)
                 self.fireball_timer = int(0.125*Globals.FPS)
+                self.room.zork_shot.play()
                 self.set_direction(0, 0)  # Stop movement
             except Exception as e:
                 print("Error loading Fireball.png:", e)

@@ -25,7 +25,7 @@ class Score(TextObject):
         Globals.SCORE += change
         self.text = str(Globals.SCORE)
         self.update_text()
-    
+        
     def reset_score(self, chamge):
         Globals.SCORE = 0
         self.text = str(Globals.SCORE)
