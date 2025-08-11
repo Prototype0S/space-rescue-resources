@@ -19,7 +19,7 @@ class Asteroid(RoomObject):
         
         # set travel direction
         angle = random.randint(135,225)
-        self.set_direction(angle, 10)
+        self.set_direction(angle, random.randint(7, 10))
         
         # register events
         self.register_collision_object("Ship")
@@ -62,4 +62,5 @@ class Asteroid(RoomObject):
             if Globals.LIVES > 0:
                 self.room.lives.update_image()
             else:
+                self.bg_music.stop()
                 self.room.running = False

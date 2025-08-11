@@ -27,3 +27,4 @@ class GamePlay(Level):
         self.asteroid_collision = self.load_sound("Ship_damage.ogg")
         self.astronaut_shot = self.load_sound("Astronaut_hit.ogg")
         self.zork_shot = self.load_sound("Zork_shot.ogg")
+        self.package_received = self.load_sound("Life_increase.ogg")

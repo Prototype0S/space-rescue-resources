@@ -15,14 +15,13 @@ class Laser(RoomObject):
         image = self.load_image("Laser.png")
         self.set_image(image, 33, 9)
         self.fireball_timer = 0
-        
         # set movement
         self.set_direction(0, 20)
-
         #handle events
         self.register_collision_object("Asteroid")
         self.register_collision_object("Astronaut")
         self.register_collision_object("Zork")
+        self.register_collision_object("Package")
         
     def step(self):
         """
@@ -61,11 +60,14 @@ class Laser(RoomObject):
             self.room.score.update_score(-10)
         elif other_type == "Zork":
             #self.room.delete_object(self)
-            try:
-                fireball = self.load_image("Fireball.png")
-                self.set_image(fireball,50, 48)
-                self.fireball_timer = int(0.125*Globals.FPS)
-                self.room.zork_shot.play()
-                self.set_direction(0, 0)  # Stop movement
-            except Exception as e:
-                print("Error loading Fireball.png:", e)
+            fireball = self.load_image("Fireball.png")
+            self.set_image(fireball,50, 48)
+            self.fireball_timer = int(0.125*Globals.FPS)
+            self.room.asteroid_shot.play()
+            self.set_direction(0, 0)  # Stop movement
+        elif other_type == "Package":
+            self.room.delete_object(other)
+            self.room.delete_object(self)
+            self.room.asteroid_shot.play()
+
+                
